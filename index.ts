@@ -25,11 +25,6 @@ const run = (
   cwd?: string
 ): Promise<void> => {
   return new Promise<void>(resolve => {
-    // (err, stdout, stderr) => {
-    //   if (err) throw new ProcessRunException(err.message)
-    //   else resolve()
-    // }
-
     try {
       const child = execa(command, args, {
         cwd: cwd || process.cwd(),

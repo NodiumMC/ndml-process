@@ -46,5 +46,5 @@ const run = (
   })
 }
 
-export const runJava = async (javaPath: string | undefined | null, args: string[], log?: (data: string) => void) =>
-  await run(resolveJavaExecutable(javaPath), args, log)
+export const runJava = async (javaPath: string | undefined | null, args: string[], log?: (data: string) => void, cwd?: string) =>
+  await run(resolveJavaExecutable(javaPath), args, log, cwd)

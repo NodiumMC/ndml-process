@@ -7,12 +7,11 @@ export const resolveJavaExecutable = (javaPath?: string | null): string => {
 
 export const checkJava = async (javaPath?: string): Promise<boolean> => {
   try {
-    const { stderr } = await execa.command(`${resolveJavaExecutable(javaPath)} -version`)
-    return !!stderr
-      .matchAll(
-        /java version "(?<version>.+?)"/g
-      )
-      .next().value?.groups
+    const { stderr } = await execa.command(
+      `${resolveJavaExecutable(javaPath)} -version`
+    )
+    return !!stderr.matchAll(/java version "(?<version>.+?)"/g).next().value
+      ?.groups
   } catch (e) {
     return false
   }
@@ -29,7 +28,7 @@ const run = (
       const child = execa(command, args, {
         cwd: cwd || process.cwd(),
         stdout: 'inherit',
-        stderr: 'inherit'
+        stderr: 'inherit',
       })
       if (log) {
         child.stdout?.on('data', (data: string) => log(data))
@@ -46,5 +45,9 @@ const run = (
   })
 }
 
-export const runJava = async (javaPath: string | undefined | null, args: string[], log?: (data: string) => void, cwd?: string) =>
-  await run(resolveJavaExecutable(javaPath), args, log, cwd)
+export const runJava = async (
+  javaPath: string | undefined | null,
+  args: string[],
+  log?: (data: string) => void,
+  cwd?: string
+) => await run(resolveJavaExecutable(javaPath), args, log, cwd)

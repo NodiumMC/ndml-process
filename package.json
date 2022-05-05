@@ -1,6 +1,6 @@
 {
   "name": "@ndml/process",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "The heart of the launcher, it is the module that launches the Minecraft window",
   "main": "lib/index.js",
   "author": "LIMPIX31",

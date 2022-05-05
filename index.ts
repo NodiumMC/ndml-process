@@ -1,6 +1,8 @@
 import execa from 'execa'
 import { ProcessRunException } from './ProcessRunException'
 
+export { ProcessRunException }
+
 export const resolveJavaExecutable = (javaPath?: string | null): string => {
   return javaPath ? `"${javaPath}"` : 'java'
 }
